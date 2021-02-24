@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import 'input.scss';
+
+html {
+    --background-color: #fffff5;
+    --text-color: #333;
+    --dark-color: #696969;
+    --font-size: 20px;
+    --small-font-size: 12px;
+    --big-font-size: 100px;
+    --font-family: 'Lato', sans-serif;
+}
+
+body, input {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: var(--font-size);
+    caret-color: var(--text-color);
+}
+
+body {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    margin: 0;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.small-text {
+    font-size: var(--small-font-size);
+}
+
+.main-container {
+    max-width: 420px;
+    max-height: 850px;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:not(:first-child) {
+            margin-top: 15px;
+        }
+
+        &.input {
+            flex-flow: column;
+
+            label {
+                margin-bottom: 5px;
+            }
+        }
+
+        &.main {
+            flex-grow: 1;
+            flex-shrink: 1;
+            font-size: var(--big-font-size);
+        }
+    }
+}

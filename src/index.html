@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>Stretching Timer</title>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <div class="row input">
+        <label>Stretching Time: <span id="time-input-text">30</span><span class="small-text">s</span></label>
+        <input type="range" id="time-input" min="1" max="300" value="30"/>
+      </div>
+      <div class="row input">
+        <label>Pause Time: <span id="pause-time-input-text">5</span><span class="small-text">s</span></label>
+        <input type="range" id="pause-time-input" min="1" max="300" value="5"/>
+      </div>
+      <div class="row input">
+        <label>Repeat: <span id="repeat-input-text">10</span><span class="small-text">n</span></label>
+        <input type="range" id="repeat-input" min="1" max="300" value="10"/>
+      </div>
+      <div class="row main">
+        <div id="timer" class="timer">
+          <span id="minutes">00</span>:<span id="seconds">30</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
