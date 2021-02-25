@@ -1,15 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import 'input.scss';
-
-html {
-    --background-color: #fffff5;
-    --text-color: #333;
-    --dark-color: #696969;
-    --font-size: 20px;
-    --small-font-size: 12px;
-    --big-font-size: 100px;
-    --font-family: 'Lato', sans-serif;
-}
+@import 'theme.scss';
+@import 'toggle.scss';
 
 body, input {
     font-family: var(--font-family);
@@ -38,7 +30,7 @@ body {
 
 .main-container {
     max-width: 420px;
-    max-height: 850px;
+    max-height: 600px;
     flex-shrink: 1;
     flex-basis: 100%;
     height: 100%;
@@ -66,6 +58,39 @@ body {
             flex-grow: 1;
             flex-shrink: 1;
             font-size: var(--big-font-size);
+            flex-flow: column;
+            
+            label {
+                font-size: var(--font-size);
+            }
+        }
+
+        &.buttons {
+            border-radius: .25rem;
+            box-shadow: 0 0 0 1pt var(--dark-color);
+
+            button {
+                flex: 1 1 50%;
+                height: 50px;
+                background: none;
+                border: none;
+                padding: 0;
+                color: var(--text-color);
+                cursor: pointer;
+
+                &:hover {
+                    background: rgba($color: #333, $alpha: 0.1);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            hr {
+                border: 1px var(--dark-color) solid;
+                height: 100%;
+            }
         }
     }
 }

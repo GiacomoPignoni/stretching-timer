@@ -18,13 +18,20 @@ export default class InputEl {
         });
         if (this.autoSave) {
             this.inputRef.on('change', () => {
-                this.saveValue();
+                this.onChange();
             });
         }
     }
 
     onInput(event) {
         this.value = event.target.value;
+    }
+
+    onChange() {
+        this.saveValue();
+        if (this.onValueChange) {
+            this.onValueChange();
+        }
     }
 
     saveValue() {

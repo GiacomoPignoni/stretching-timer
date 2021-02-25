@@ -18,7 +18,7 @@ module.exports = merge(common, {
                 test: /\.html$/,
                 use: [
                     {
-                        loader: "html-loader",
+                        loader: 'html-loader',
                         options: { minimize: false }
                     }
                 ]
@@ -26,6 +26,7 @@ module.exports = merge(common, {
         ]
     },
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        host: '127.0.0.1'
     }
 });
