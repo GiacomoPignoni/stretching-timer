@@ -16,7 +16,7 @@ export default class InputEl {
         this.inputRef.on('input', (e) => {
             this.onInput(e);
         });
-        if (this.autoSave) {
+        if (this.autoSave === true) {
             this.inputRef.on('change', () => {
                 this.onChange();
             });

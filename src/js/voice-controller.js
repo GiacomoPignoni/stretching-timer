@@ -1,13 +1,14 @@
-export default class VoiceController {
+import BoolValueSave from './bool-value-save';
 
+export default class VoiceController extends BoolValueSave {
     constructor() {
+        super('#mute-toggle');
         this.utterance = new SpeechSynthesisUtterance('');
         this.utterance.lang = 'en-US';
-        this.muted = false;
     }
 
     speak(text) {
-        if (this.muted === false) {
+        if (this.input.is(':checked') === false) {
             this.utterance.text = text;
             window.speechSynthesis.speak(this.utterance);
         }

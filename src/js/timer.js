@@ -1,17 +1,27 @@
 import VoiceController from './voice-controller';
 
 export default class TimerEl {
-    constructor(id, time, pauseTime, repeat) {
-        this.ref = $(`#${id}`);
+    constructor(time, pauseTime, repeat) {
+        this.ref = $('#timer');
         this.time = time;
         this.pauseTime = pauseTime;
         this.repeat = repeat;
         this.playing = false;
+        this.paused;
         this.voice = new VoiceController();
 
         this.time.onValueChange = () => {
             this.onTimeValueChange();
         }
+        this.repeat.onValueChange = () => {
+            this.onRepeatValueChange();
+        }
+        $('#stop-btn').on('click', () => {
+            this.stop();
+        });
+        $('#play-btn').on('click', () => {
+            this.playPause();
+        });
 
         this.currentTimeS = this.time._value;
         this.setText();
@@ -20,11 +30,25 @@ export default class TimerEl {
     }
 
     playPause() {
-        clearInterval(this.interval);
-        this.voice.speak('Session start');
-        this.playing = true;
-        this.counter = this.repeat._value;
-        this.play();
+        if (this.playing === true) {
+            $('#play-btn #icon').removeClass('icon-pause').addClass('icon-play');
+            if (this.paused === true) {
+                // Resume from pause
+                this.paused = false;
+                this.voice.speak('Resumed');
+            } else {
+                // Put in pause
+                this.paused = true;
+                this.voice.speak('Timer paused');
+            }
+        } else {
+            clearInterval(this.interval);
+            this.voice.speak('Session start');
+            this.playing = true;
+            this.counter = this.repeat._value;
+            $('#play-btn #icon').removeClass('icon-play').addClass('icon-pause');
+            this.play();
+        }
     }
 
     play() {
@@ -47,9 +71,13 @@ export default class TimerEl {
         this.setText();
         this.setCount(this.repeat._value);
         this.setLabel('');
+        $('#play-btn #icon').removeClass('icon-pause').addClass('icon-play');
     }
 
     tick() {
+        if (this.paused === true)
+            return;
+
         if (this.currentTimeS <= 0) {
             this.pPlay();
         } else {
@@ -70,6 +98,9 @@ export default class TimerEl {
     }
 
     pTick() {
+        if (this.paused === true)
+            return;
+
         if (this.currentTimeS <= 0) {
             if (this.counter <= 0) {
                 this.finish();
@@ -97,6 +128,12 @@ export default class TimerEl {
         if (this.playing === false) {
             this.currentTimeS = this.time._value;
             this.setText();
+        }
+    }
+
+    onRepeatValueChange() {
+        if (this.playing === false) {
+            this.setCount(this.repeat._value);
         }
     }
 

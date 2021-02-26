@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-@import 'input.scss';
 @import 'theme.scss';
 @import 'toggle.scss';
+@import 'fontello.css';
 
 body, input {
     font-family: var(--font-family);
@@ -22,6 +22,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+input {
+    width: 100%;
 }
 
 .small-text {
@@ -62,6 +66,28 @@ body {
             
             label {
                 font-size: var(--font-size);
+            }
+        }
+
+        .mute-toggle {
+            position: relative;
+
+            .mute-toggle-input {
+                opacity: 0;
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+
+            .icon::before {
+                content: '\e804';
+            }
+
+            .mute-toggle-input:checked {
+                ~ .icon::before {
+                    content: '\e803'
+                }
             }
         }
 
